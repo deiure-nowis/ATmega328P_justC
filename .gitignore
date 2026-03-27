@@ -1,0 +1,7 @@
+# Zkompilované objekty a binárky
+*.o
+*.elf
+*.hex
+
+# Konfigurační soubory IDE
+*.geany
