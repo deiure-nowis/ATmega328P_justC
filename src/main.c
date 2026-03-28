@@ -5,7 +5,6 @@
 #include <avr/interrupt.h>
 #include <util/atomic.h>
 
-#include "uart.h"
 #include "i2c.h"
 #include "sht40.h"
 #include "lcd_i2c.h"
@@ -31,7 +30,6 @@ uint32_t millis(void){
 }
 
 int main(void){
-	uart_init();
 	i2c_init();
 	lcd_init();
 	timer0_init();
