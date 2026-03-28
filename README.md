@@ -1,11 +1,11 @@
 # Bare-metal AVR SHT40
----
+
 Tento projekt je implementací jednoduché meteostanice postavené na mikrokontroléru **ATmega328P**. Cílem projektu bylo vytvořit robustní embedded aplikaci v čistém jazyce C (bare-metal) **bez použití Arduino frameworku** nebo externích knihoven třetích stran.
 
 Projekt demonstruje práci s registry, hardwarovými periferiemi, přerušeními a optimalizaci kódu pro 8-bitovou architekturu.
 
 ## Hlavní technické vlastnosti (Highlights)
----
+
 * **Custom I2C (TWI) driver:** Plně hardwarově ovládaná I2C sběrnice přes registry AVR. Implementováno s **ochranou proti zamrznutí (timeouty)**, aby nedošlo k zablokování programu při chybě na sběrnici.
 * **Non-blocking architektura:** Náhrada zdržujících `_delay_ms()` smyček vlastním asynchronním plánovačem pomocí `millis()`.
 * **Interrupts & Atomicity:** Služba Timer0 běží na pozadí přes přerušení (`ISR`). Pro bezpečné čtení 32-bitové časové proměnné v hlavní smyčce je využit `ATOMIC_BLOCK`, čímž je zabráněno *race conditions* na 8-bitovém MCU.
@@ -14,13 +14,13 @@ Projekt demonstruje práci s registry, hardwarovými periferiemi, přerušeními
 * **Vlastní Build systém:** Kompilace a flashování je řízeno vlastním `Makefile` s využitím `avr-gcc` a `avrdude`.
 
 ## Hardware
----
+
 * **MCU:** ATmega328P (Taktováno na 16 MHz)
 * **Senzor:** Sensirion SHT40 (High-accuracy I2C senzor teploty a vlhkosti, adresa `0x44`)
 * **Displej:** 16x2 znakový LCD s I2C expandérem PCF8574 (adresa `0x4E`)
 
 ## Struktura projektu
----
+
 ```text
 .
 ├── Makefile       # Definice build procesu a flashování
@@ -36,7 +36,7 @@ Projekt demonstruje práci s registry, hardwarovými periferiemi, přerušeními
 ```
 
 ## Kompilace a Flashování
----
+
 Projekt nepoužívá žádné IDE, je plně ovladatelný z příkazové řádky.
 
 ### Prerekvizity
@@ -59,7 +59,7 @@ Projekt nepoužívá žádné IDE, je plně ovladatelný z příkazové řádky.
    ```
 
 ## Zhodnocení a možná rozšíření
----
+
 Aplikace běží stabilně a je odolná vůči odpojení senzoru za běhu (díky timeoutům na I2C a vypisování "SHT40 CHYBA!").
 Potenciální budoucí vylepšení:
 * Uspávání procesoru (Sleep modes) mezi cykly měření pro snížení spotřeby.
